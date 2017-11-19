@@ -1,0 +1,51 @@
+Bits to Target and Difficulty 11-18-2017												
+												
+(Press CTRL + ` (grave accent) to see the formulas)												
+Reference												
+Understanding Bitcoin mining & difficulty for fun and no profit 		http://blog.jameslarisch.com/mining-bitcoin-blocks-yourself-for-fun-and-no-profit										
+												
+Bits to Target and Difficulty												
+Description	Formula	Calculation										
+    Calculate the multiplier  =  2 ** (8 * exponent - 3))												
+"1. Enter Bits  from Explorer, 1a07ac05 for block 37000"		1a07ac05										
+"2. Get first two characters, the exponent"	"=LEFT(C10,2)"	1a										
+3. Convert exponent characters from hex to decimal	= HEX2DEC(C11)	26										
+4. Calculate the multiplier	"=POWER(2,(8*(C12-3)))"	2.45199E+55										
+"5. Get the last 6 characters of Bits, the value"	"=RIGHT(C10,6)"	07ac05										
+6. Convert the value to decimal	=HEX2DEC(C14)	502789										
+7. Target = value * multiplier	=C15*C13	1.23284E+61										
+    Difficulty is easiest target / current target												
+"8. Easiest target in hex, from Satoshi"		ffff0000000000000000000000000000000000000000000000000000										
+9. Convert easiest target to decimal	"=DECIMAL(C18,16)"	2.69595E+67										
+10. Difficulty = easiest target / current target	=C19/C16	2186792										
+												
+Target to Difficulty and Bits												
+1. Enter a Target value		1.23E+61										
+2. Difficulty = easiest target / current target	=C19/C23	2186791.777										
+    The exponent for Qtum will always be about 26 decimal		26										
+3. Bits value = target / 2**(8*(26 - 3))	"=C23/POWER(2,8*(26-3))"	502789										
+4. Convert value to hex		7AC04										
+5. Convert multiplier to hex	=DEC2HEX(C25)	1A										
+6. Concatinate hex characters together	"=CONCATENATE(C28,C27)"	1A7AC04										
+												
+												
+												
+												
+												
+												
+												
+												
+												
+												
+												
+												
+												
+												
+												
+												
+												
+												
+												
+Block 45064												
+1a05b37b												
+2942760.696												
