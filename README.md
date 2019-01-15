@@ -2350,7 +2350,7 @@ Send to multiple addresses, requires the wallet to unlocked. Amounts are floatin
 sendmany "" "{\"QcEz4erq5gH6sa3ujWsqpZW4869MwrQf5\":0.5,\"QM5yJs3v3u9vAVE5XseFa9g63ke6Ld9Wp\":0.77}"
 
 7a5077ac6e42acbed182c35eb034702e1fadd5c7d1547a85ae63dc0e151ed5
-
+```
 
 ### sendmanywithdupes "fromaccount" {"address":amount,...} ( minconf "comment" ["address",...] )
 
@@ -2426,7 +2426,6 @@ Attempts to add or remove an IP address from the banned list. Use “add” to a
 setban "116.61.213.45" "add" 86400
 
 null
-
 
 listbanned
 
