@@ -301,7 +301,7 @@ dumpwallet "C:\Users\<username>\Desktop\Backups\dump 2018-10-30.txt"
 {
   "filename": "C:\\Users\\<username>\\Desktop\\Backups\\dump 2018-10-30.txt"
 }
-
+```
 File:
 ```
   Wallet dump created by Qtum v0.16.1.0-0806c12c4-dirty
@@ -322,7 +322,7 @@ dumpwallet /Users/<USERNAME>/Desktop/dump_2018-12-15.txt
   "filename": "/Users/<USERNAME>/Desktop/dump_2018-12-15.txt"
 
 }
-
+```
 File:
 ```
   Wallet dump created by Qtum v0.16.2.0-47a30461d-dirty
