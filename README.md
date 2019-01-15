@@ -777,7 +777,7 @@ Returns the hash of the main blockchain for the given block height (not an orpha
 getblockhash 244848
 
 8c0a43d58e96bd081209243eb9406c98ab3771c900cc05d793a62c48f3b1c03f
-
+```
 
 ### getblockheader "hash" ( verbose )
 
