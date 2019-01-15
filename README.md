@@ -1443,15 +1443,16 @@ getreceivedbyaddress QfWtnPq9M4a7Fmeeh6dyu0s4KR59F9xn
 
 Returns staking-related information.
 
-“enabled”: true means the wallet was launched with staking allowed (command line option “-staking=false” was not used)
-“staking” true means the wallet is staking (decrypted, mature coins, blockchain synced)
-“errors” gives the various errors (rare)
-“currentblocktx” gives the number of transactions in a block mined by the wallet
-“pooledtx” gives the number of transactions waiting in the mempool
-“difficulty” gives the PoS target difficulty for the current block.
-“search-interval” gives either the time in seconds since the wallet began staking or the time since the wallet’s most recent block reward, here one day and one minute.
-“weight” gives the wallet weight and “netstakeweight” gives the estimated network weight. These are given in Satoshis, move the decimal point eight digits to the left to give these weights in units, here wallet weight of 148 QTUM and network weight of 12.23 million
-“expected time” gives the estimate of expected time to a block reward in seconds, here 4.59 months
+* “enabled”: true means the wallet was launched with staking allowed (command line option “-staking=false” was not used)
+* “staking” true means the wallet is staking (decrypted, mature coins, blockchain synced)
+* “errors” gives the various errors (rare)
+* “currentblocktx” gives the number of transactions in a block mined by the wallet
+* “pooledtx” gives the number of transactions waiting in the mempool
+* “difficulty” gives the PoS target difficulty for the current block.
+* “search-interval” gives either the time in seconds since the wallet began staking or the time since the wallet’s most recent block reward, here one day and one minute.
+* “weight” gives the wallet weight (mature coins staking) 
+* “netstakeweight” gives the estimated network weight. weight and netstakeweight are given in Satoshis, move the decimal point eight digits to the left to give these weights in units, here wallet weight of 148 QTUM and network weight of 12.23 million
+* “expected time” gives the estimate of expected time to a block reward in seconds, here 4.59 months
 
 ```
 getstakinginfo
