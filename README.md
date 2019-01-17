@@ -31,7 +31,7 @@ Figure 3. The help command
 
 Console commands are given to a running Qtum Core wallet and provide additional information and control. Console commands and are required to operate the qtumd server wallet, which is a “headless” wallet with no graphical user interface.
 
-There are 125 console commands with some good references for the 112 inherited from bitcoin. There are 13 “hidden” commands that are used by developers and won’t show up in the “help” list.
+There are 136 console commands with some good references for the 112 inherited from bitcoin. In the total there are 13 “hidden” commands that are used by developers and won’t show up in the “help” list.
 
 XXXXX check numbers
 
