@@ -17,6 +17,8 @@ This manual focuses on the console commands which are given to a wallet that is 
 ![2019-1 Mac Debug Window with Prompt](https://i.imgur.com/K0uCLVr.jpg)
 Figure 1. The qtum-qt Console
 
+Note the warning message in red in Figure 1 and be careful using the private key commands (`dumpprivkey` and `dumpwallet`) with Mainnet wallets.
+
 For the server wallet qtumd, console commands are given using the Command Line Interface application qtum-cli on the system command line prompt (see Figure 2).
 
 ![2019-2 Command Line Win](https://i.imgur.com/m1xp3ng.jpg)
@@ -33,8 +35,6 @@ Console commands are given to a running Qtum Core wallet and provide additional 
 
 There are 136 console commands with some good references for the 112 inherited from bitcoin. In the total there are 13 “hidden” commands that are used by developers and won’t show up in the “help” list.
 
-XXXXX check numbers
-
 Commands can have required or optional parameters and more numerous parameters are entered in JSON (JavaScript Object Notation) format with escaped double quotes ( \” ) as shown below.
 
 Common parameters for these commands are Qtum addresses, block hashes, contract addresses, etc. Some of the commands will have an optional parameter “minconf” (minimum confirmations) which allows you to get a response only for a transaction or block that have at least that number of confirmations.
@@ -48,11 +48,11 @@ Advanced interfaces to the Qtum Core wallet (full node) can use these “console
 
 Here are some command groupings that are useful for various tasks:
 
-* Peer connections: getconnectioncount, getpeerinfo, addnodes, getnetworkinfo
-* Staking: getstakinginfo, getwalletinfo, getnetworkinfo
-* Sending: listaddressgroupings, sendtoaddress, sendmany, sendmanywithdupes
-* Raw transactions: crearterawtransaction, signrawtransaction, combinerawtransactoins, sendrawtransaction.
-* Smart contract transactions: createcontract, callcontract, sendtocontract, getaccountinfo, getstorage, searchlogs, waitforlogs
+* Peer connections: `getconnectioncount`, `getpeerinfo`, `addnodes`, `getnetworkinfo`
+* Staking: `getstakinginfo`, `getwalletinfo`, `getnetworkinfo`
+* Sending: `listaddressgroupings`, `sendtoaddress`, `sendmany`, `sendmanywithdupes`
+* Raw transactions: `crearterawtransaction`, `signrawtransaction`, `combinerawtransactoins`, `sendrawtransaction`
+* Smart contract transactions: `createcontract`, `callcontract`, `sendtocontract`, `getaccountinfo`, `getstorage`, `searchlogs`, `waitforlogs`
 
 ## Startup Commands
 
@@ -87,7 +87,7 @@ Transaction not eligible for abandonment (code -5)
 
 ### abortrescan
 
-Stops a wallet rescan triggered by a command such as importprivkey. This command can be issued by opening a 2nd command line window (where the first window is scanning), in which case the command will stop the scan and return “true”.
+Stops a wallet rescan triggered by a command such as `importprivkey`. This command can be issued by opening a 2nd command line window (where the first window is scanning), in which case the command will stop the scan and return “true”.
 
 ```
 qtum-cli abortrescan
@@ -356,7 +356,7 @@ File:
 
 ### encryptwallet "passphrase"
 
-Encrypts the wallet with “passphrase” for first-time encryption. After encryption, any calls that interact with private keys such as sending or signing will require passphrase entry to enable these functions. See also walletpassphrase, walletlock and walletpassphrasechange. After this command runs, the wallet will shut down.
+Encrypts the wallet with “passphrase” for first-time encryption. After encryption, any calls that interact with private keys such as sending or signing will require passphrase entry to enable these functions. See also `walletpassphrase`, `walletlock` and `walletpassphrasechange`. After this command runs, the wallet will shut down.
 
 ```
 encryptwallet "you should always use a long and strong passphrase"
@@ -367,7 +367,7 @@ encryptwallet "you should always use a long and strong passphrase"
 
 Hidden command. Simply echo back the input arguments. This command is for testing.
 
-The difference between echo and echojson is that echojson has argument conversion enabled in the client-side table in qtum-cli and the GUI. There is no server-side difference. Here we echo the parameters used to setup a multisig address.
+The difference between `echo` and `echojson` is that `echojson` has argument conversion enabled in the client-side table in qtum-cli and the GUI. There is no server-side difference. Here we echo the parameters used to setup a multisig address.
 
 ```
 echo "[\"qghwDvb1pyJoqoAD2ESMTevvvjUfNvReDn\",\"qfKr7vXdmroHi61XUUHedXvgV2mDx9Kudb\"]"
@@ -381,7 +381,7 @@ echo "[\"qghwDvb1pyJoqoAD2ESMTevvvjUfNvReDn\",\"qfKr7vXdmroHi61XUUHedXvgV2mDx9Ku
 
 Hidden command. Simply echo back the input arguments. This command is for testing.
 
-The difference between echo and echojson is that echojson has argument conversion enabled in the client-side table in qtum-cli and the GUI. There is no server-side difference. Here we echo the parameters used to setup a multisig address.
+The difference between `echo` and `echojson` is that `echojson` has argument conversion enabled in the client-side table in qtum-cli and the GUI. There is no server-side difference. Here we echo the parameters used to setup a multisig address.
 
 ```
 echojson
@@ -542,7 +542,7 @@ docker exec myapp qcli generate 600
 
 ### generatetoaddress nblocks address (maxtries)
 
-Mine up to nblocks immediately to a specified address. Used with the regression test "regtest" private test blockchain. Here we generate 10 genesis blocks on regtest with 20,000 Test QTUM each, plus an initial block, and “listaddressgroupings” shows the result:
+Mine up to nblocks immediately to a specified address. Used with the regression test "regtest" private test blockchain. Here we generate 10 genesis blocks on regtest with 20,000 Test QTUM each, plus an initial block, and `listaddressgroupings` shows the result:
 
 ```
 PS C:\Users\Test> docker exec myapp qcli generatetoaddress 10 "qNe5aDdubCGRaTp7vDYL4BASjzVH7c7Yc"
@@ -2212,7 +2212,7 @@ null
 
 ### preciousblock "blockhash"
 
-Prioritizes a block with an earlier time for blocks at the same height. Used in hard fork situations. See also invalidateblock. qtum-qt returns “null” if successful, qtumd returns nothing if successful.
+Prioritizes a block with an earlier time for blocks at the same height. Used in hard fork situations. See also `invalidateblock`. qtum-qt returns “null” if successful, qtumd returns nothing if successful.
 
 ```
 preciousblock 854d57da75ba7550aebe83c1cdf539ac685d735684b7c40cfd639582abf43b
@@ -2250,7 +2250,7 @@ pruneblockchain 125000
 
 
 
-Don’t prune the blockchain if your wallet accepts incoming connections (over 8 peers) because your wallet needs to be able to send all the blocks to new peers coming online.
+Don’t prune the blockchain if your wallet accepts incoming connections (over 8 peers) because your wallet needs to be able to send all the blocks to bootstrap new peers coming online.
 
 ### reconsiderblock "blockhash"
 
@@ -2265,7 +2265,7 @@ null
 
 ### removeprunedfunds "txid"
 
-Deletes the specified transaction from the wallet. Meant for use with pruned wallets and as a companion to importprunedfunds. This will affect wallet balances. Qtum-cli returns “null”.
+Deletes the specified transaction from the wallet. Meant for use with pruned wallets and as a companion to `importprunedfunds`. This will affect wallet balances. Qtum-cli returns “null”.
 
 ```
 removeprunedfunds "535e2bf90fda10c8c8186c4c73ac2861cb19312507b9e4552e78a6148030f19f"
@@ -2324,7 +2324,7 @@ null
 
 ### searchlogs <fromBlock> <toBlock> (address) (topics)
 
-Return the smart contract log events between two blocks (inclusive). The command requires -logevents to be enabled on wallet startup. Use the contract address hash if desired.
+Return the smart contract log events between two blocks (inclusive). The command requires `-logevents` to be enabled on wallet startup. Use the contract address hash if desired.
 
 ```
 searchlogs 274690 274700
@@ -2576,7 +2576,7 @@ stop
 
 ### submitblock "hexdata"  ( "dummy" )
 
-Attempts to submit new block to network. See https://en.bitcoin.it/wiki/BIP_0022 for full specification. Use `getblocktemplate` to construct a block and convert to hex using ?????
+Attempts to submit new block to network. See https://en.bitcoin.it/wiki/BIP_0022 for full specification. Use `getblocktemplate` to construct a block and convert to hex using XXXXX
 
 XXXXX
 
@@ -2716,7 +2716,7 @@ qtum-cli waitforblockheight 281985
 
 ### waitforlogs (fromBlock) (toBlock) (filter) (minconf)
 
-requires -logevents to be enabled
+requires `-logevents` to be enabled
 
 Waits for a new logs and returns matching log entries. When the call returns, it also specifies the next block number to start waiting for new logs. By calling waitforlogs repeatedly using the returned `nextBlock` number, a client can receive a stream of up-to-date log entries.
 
