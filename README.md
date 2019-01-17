@@ -5,24 +5,30 @@ This is a tab delimited text file giving the Excel formulae for converting Diffi
 in compact notation to the Target and Difficulty.
 
 
-# Commands 1-14-2019
+# Commands 1-16-2019
 
 The Qtum Core wallet has a rich set of commands which give comprehensive control of the wallet and blockchain transactions. There are two sets of commands that may be used with Qtum Core wallets:
 
 * Console commands are given to a wallet that is already running.
 * Startup commands are used when starting up a wallet.
 
-This manual focuses on the console commands which are given to a wallet that is running and can be sent using RPC (Remote Procedure Calls) or on the command line to the qtumd server wallet or given to the qtum-qt desktop GUI (Graphical User Interface) wallet using the Debug window Console command line:
+This manual focuses on the console commands which are given to a wallet that is running and can be sent using RPC (Remote Procedure Calls) or on the command line to the qtumd server wallet or given to the qtum-qt desktop GUI (Graphical User Interface) wallet using the Debug window Console command line (see Figure 1).
 
-![2019-1 Debug window](https://i.imgur.com/K0uCLVr.jpg)
+![2019-1 Mac Debug Window with Prompt](https://i.imgur.com/K0uCLVr.jpg)
 
-For the server wallet qtumd, console commands are given using the Command Line Interface application qtum-cli on the system command line prompt:
+Figure 1. The qtum-qt Console
 
-![2019-2 Command Prompt](https://i.imgur.com/m1xp3ng.jpg)
+For the server wallet qtumd, console commands are given using the Command Line Interface application qtum-cli on the system command line prompt (see Figure 2).
 
-You can always get a list of the current console commands using the help command:
+![2019-2 Command Line Win](https://i.imgur.com/m1xp3ng.jpg)
 
-![2019-3 Help command](https://i.imgur.com/w8yGO2G.jpg)
+Figure 2. System command line prompt
+
+You can always get a list of the current console commands using the help command (see Figure 3.)
+
+![2019-3 Help Command Mac](https://i.imgur.com/w8yGO2G.jpg)
+
+Figure 3. The help command
 
 ## Console Commands :hammer_and_wrench:
 
@@ -30,15 +36,18 @@ Console commands are given to a running Qtum Core wallet and provide additional 
 
 There are 125 console commands with some good references for the 112 inherited from bitcoin. There are 13 “hidden” commands that are used by developers and won’t show up in the “help” list.
 
+XXXXX check numbers
+
 Commands can have required or optional parameters and more numerous parameters are entered in JSON (JavaScript Object Notation) format with escaped double quotes ( \” ) as shown below.
 
 Common parameters for these commands are Qtum addresses, block hashes, contract addresses, etc. Some of the commands will have an optional parameter “minconf” (minimum confirmations) which allows you to get a response only for a transaction or block that have at least that number of confirmations.
 
 A quick comment on “accounts”. Accounts was an ill-fated way from bitcoin to track balances for what are really UTXO transaction-based values, and “accounts” are deprecated and will be phased out by version 0.17.
 
-The chain query bitcoin API reference http://chainquery.com/bitcoin-api explains the parameters and gives examples with responses. The bitcoin chain query API reverence gives 67 commands, of which 2 are not in Qtum (estimatepriority, getgenerate) and two (gettransaction, walletpassphrase) have an additional parameter for Qtum. (https://bitcoin.org/en/developer-reference#remote-procedure-calls-rpcs
+The chain query bitcoin API reference http://chainquery.com/bitcoin-api explains the parameters and gives examples with responses for the commands inherited from bitcoin. The bitcoin chain query API reverence gives 67 commands, of which 2 are not in Qtum (`estimatepriority`, `getgenerate`) and two (`gettransaction`, `walletpassphrase`) have an additional parameter for Qtum. See also https://bitcoin.org/en/developer-reference#remote-procedure-calls-rpcs.
 
-Advanced interfaces to the Qtum Core wallet (full node) can use these “console commands” as RPCs (Remote Procedure Calls) over a dedicated port connection to the node. To build an exchange hot wallet or server node for a mobile DAPP (Distributed Application) you can use RPCs, which follow these same console commands. The client node offers a JSON-RPC interface over HTTP over sockets to perform various operational functions and to manage the local node.
+
+Advanced interfaces to the Qtum Core wallet (full node) can use these “console commands” as RPCs (Remote Procedure Calls) over a dedicated port connection to the node. To build an exchange hot wallet or server node for a mobile DAPP (Distributed Application) you can use RPCs, which follow these same console commands. The client node offers a JSON-RPC interface over HTTP sockets to perform various operational functions and to manage the local node.
 
 Here are some command groupings that are useful for various tasks:
 
@@ -50,25 +59,26 @@ Here are some command groupings that are useful for various tasks:
 
 ## Startup Commands
 
-Startup commands give additional control and recovery options when launching the wallet. For example, you can use startup commands for the wallet for various kinds of blockchain recovery techniques, and additional debug logging or additional controls. If you are going to use these startup commands, make sure you have a good backup of the wallet.dat file.
+Startup commands give additional control and recovery options when launching the wallet. For example, you can use startup commands for the wallet for various kinds of blockchain recovery techniques, additional debug logging or additional controls. If you are going to use these startup commands, make sure you have a good backup of the wallet.dat file.
 
 See the startup commands on the qtum-qt wallet with Help – Command line options:
 
-![2019-4 Command line options](https://i.imgur.com/CryGF13.jpg) 
+![2019-4 Startup Commands Win](https://i.imgur.com/CryGF13.jpg)
 
 and on the command line itself with “qtumd -?”:
 
-![2019-5 Command line command options](https://i.imgur.com/KCmxFaC.jpg) 
+![2019-5 Startup Commands Command Line Win](https://i.imgur.com/KCmxFaC.jpg)
+
 
 ## Console Commands A - Z
 
-For these console commands documented below, responses are given for default parameters (Qtum version 0.16 – winter 2018). Commands marked DEPRECATED should not be used because they will be removed and replaced in future versions of the wallet, for example, commands using “account” will be removed in version 0.18.
+For these console commands documented below, responses are given for default parameters (Qtum version 0.16 – winter 2018/2019). Commands marked DEPRECATED should not be used because they will be removed and replaced in future versions of the wallet, for example, commands using “account” will be removed in version 0.18.
 
-Using the command “help <command name>” will give complete information about the command and relevant parameters, formatted in a way you can copy and paste (replacing the addresses, transactions IDs, etc., as required). The format below shows the command with parameters followed by the response, in some cases parameters or responses are truncated with the term <snip>. Where noted, some commands only work with the regtest (Regression Test) network. Many commands will return “null” for qtum-qt and return nothing for command line systems.
+Using the command “help \<command name\>” will give complete information about the command and relevant parameters, formatted in a way you can copy and paste (replacing the addresses, transactions IDs, etc., as required). The format below shows the command with parameters followed by the response, in some cases, parameters or responses are truncated with the term “\<snip\>”. Where noted, some commands only work with the regtest (Regression Test) network. Many commands will return “null” for qtum-qt and return nothing for command line systems.
 
 ### abandontransaction "txid"
 
-Works on transactions not in the blockchain or mempool. Tried Testnet with no network connections
+Works on transactions not in the blockchain or mempool, used in testing.
 
 ```
 abandontransaction "0cc99a30bc2064041ea4263835b4ed594ff500c56d6b14e4970aeee548e71389"
@@ -78,7 +88,7 @@ Transaction not eligible for abandonment (code -5)
 
 ### abortrescan
 
-Stops a wallet rescan triggered by a command such as importprivkey. This command can be issued by a 2nd command line window, in which case the command will stop the scan and return “true”.
+Stops a wallet rescan triggered by a command such as importprivkey. This command can be issued by opening a 2nd command line window (where the first window is scanning), in which case the command will stop the scan and return “true”.
 
 ```
 qtum-cli abortrescan
@@ -88,13 +98,10 @@ true
 
 ### addmultisigaddress nrequired ["key",...] ( "account" "address_type" )
 
-Add a multisignature address to the wallet so you can receive and send from that address. Run the command on each machine that will be signing and backup the wallet.dat file. The address can be a Qtum address or hex-encoded public key. Use importaddress to add the multisig address on each signing wallet.
+Add a multisignature address to the wallet so you can receive and send from that address. Run the command on each machine that will be signing and backup the wallet.dat file. The address can be a Qtum address or hex-encoded public key. Use `importaddress` to add the multisig address on each signing wallet.
 
-This functionality is only intended for use with non-watchonly addresses. See `importaddress` for watchonly p2sh address support.
+This functionality is only intended for use with non-watchonly addresses. See `importaddress` for watchonly p2sh address support. Use of account is DEPRECATED). See also `validateaddress`.
 
-Use of account is DEPRECATED).
-
-See also validateaddress.
 
 ```
 addmultisigaddress 2 "[\"QgdaD9b3ppKowoC45EZMtepjjBfnvEe6m\",\"QFmr8vY29reHj73XSHfdWvkV3mD57Kqd8\"]"
@@ -107,7 +114,7 @@ addmultisigaddress 2 "[\"QgdaD9b3ppKowoC45EZMtepjjBfnvEe6m\",\"QFmr8vY29reHj73XS
 
 ### addnode "node" "add|remove|onetry"
 
-Attempts to add a node with a known IP address. This command is useful for new wallets that are having trouble making peer connections. Here are some good IP addresses to add, you can put these one after another, then the wallet will try for a few minutes to make a peer connection with each. Qtum-qt will return “null” after each, qtumd returns nothing.
+Attempts to add a node with a known IP address. This command is useful for new wallets that are having trouble making peer connections. Here are some good IP addresses to add, you can put these commands in one after another, then the wallet will try for a few minutes to make a peer connection with each. Qtumd returns nothing:
 
 ```
 addnode 35.200.159.68:3888 add
@@ -117,13 +124,17 @@ addnode 35.200.130.53:3888 add
 addnode 35.192.54.161:3888 add
 ```
 
-![2019-6 addnode command](https://i.imgur.com/RjRkiP8.jpg) 
+
+Qtum-qt returns “null” after each:
+
+![2019-6 addnode Mac](https://i.imgur.com/RjRkiP8.jpg)
 
 ### addwitnessaddress "address" ( p2sh )
 
-Hidden command. DEPRECATED. This command was a way to generate a SegWit address from an existing legacy address, usually a P2SH-P2WPKH addresses - Pay-to-Witness-Public-Key-Hash (P2WPKH) script embedded in a Pay-to-Script-Hash (P2SH) address. This command is mostly disabled in version 0.16 and will be removed in version 0.17. Instead, use the getnewaddress command with address type p2sh-segwit or bech32.
+Hidden command. DEPRECATED. This command was a way to generate a SegWit address from an existing legacy address, usually a P2SH-P2WPKH addresses - Pay-to-Witness-Public-Key-Hash (P2WPKH) script embedded in a Pay-to-Script-Hash (P2SH) address. This command is mostly disabled in version 0.16 and will be removed in version 0.17. Instead, use the `getnewaddress` command with address type p2sh-segwit or bech32.
 
-Launch v 0.16 qtumd with -deprecatedrpc=addwitnessaddress to run the command:
+Launch v 0.16 qtumd with `-deprecatedrpc=addwitnessaddress` to run the command:
+
 
 ```
 addwitnessaddress QkSc3wcAJ59Nk4X9mvd258ycVxJ7XWhp9
@@ -133,7 +144,7 @@ MHa57hGwD48SZQjh23MZbq24tFwTu7Q3c
 
 ### backupwallet "destination"
 
-The destination can be a filename or path with a filename. (on Windows). The wallet must be fully decrypted (not just for staking only) for this command to work. qtum-qt will returns “null”, qtumd returns nothing.
+The destination can be a filename or path with a filename. The wallet must be fully decrypted (not just for staking only) for this command to work. qtum-qt will returns “null”, qtumd returns nothing. On Windows:
 
 ```
 backupwallet "C:\Users\<username>\Desktop\Backups\backup2018-10-21.dat"
@@ -143,7 +154,7 @@ null
 
 ### bumpfee "txid" ( options )
 
-Bumps the fee of a transaction, replacing it with a new transaction by adjusting the change. The new fee can be calculated automatically or by using various options (see “help bumpfee”).
+Bumps the fee of a transaction, replacing it with a new transaction by adjusting the change. The new fee can be calculated automatically or by using various options.
 
 ```
 bumpfee "cae25062777fca1bce7f860dd238af2be4495f4aef1b5a15bbee260b4c3cde2"
@@ -179,7 +190,7 @@ null
 
 ### combinerawtransaction ["hexstring",...]
 
-Combine multiple partially signed raw transactions into one transaction. The combined transaction may be another partially signed transaction or a fully signed transaction.
+Combine multiple partially signed raw transactions into one transaction. The combined transaction may be another partially signed transaction or a fully signed transaction. Here two raw transactions are combined:
 
 ```
 combinerawtransaction "[\"0200000001b<snip>000000\", \"0200000001c<snip>000000\"]"
@@ -189,7 +200,7 @@ combinerawtransaction "[\"0200000001b<snip>000000\", \"0200000001c<snip>000000\"
 
 ### createcontract "bytecode" (gaslimit gasprice "senderaddress" broadcast)
 
-Publish a smart contract for the given bytecode, using default gas price of 0.00000040 and gas amount of 2,500,000. Returns the transaction ID and the contract address hash for the contract.
+Publish a smart contract for the given bytecode, using default gas price of 0.00000040 and gas amount of 2,500,000. Returns the transaction ID and the contract address hash.
 
 ```
 createcontract 60606040<snip>41701d0029
@@ -204,11 +215,12 @@ createcontract 60606040<snip>41701d0029
 
 ### createmultisig nrequired ["key",...]
 
-DEPRECATED. Use addmultisigaddress.
+DEPRECATED. Use `addmultisigaddress`.
 
 ### createrawtransaction [{"txid":"id","vout":n},...] {"address":amount,"data":"hex",...} ( locktime ) ( replaceable )
 
-Create a hex-encoded raw transaction sending some inputs to outputs. The transaction must then be signed and sent to the network, see signrawtransaction and sendrawtransaction. Returns a hex-encoded raw transaction. If you are sending coins be sure to create a change address so the change can be returned; any difference between the input values and output values will be taken as the transaction fee. If you don’t work out the math you could pay a big transaction fee.
+Create a hex-encoded raw transaction sending some inputs to outputs. The transaction must then be signed and sent to the network, see `signrawtransaction` and `sendrawtransaction`. Returns a hex-encoded raw transaction. If you are sending coins make sure to create a change address so the change can be returned; any difference between the input values and output values will be taken as the transaction fee. If you don’t work out the math you could pay a big transaction fee.
+
 
 ```
 createrawtransaction "[{\"txid\":\"17b3f9ef530695ef2e0368e445a3b59bf12811bdfd42325bb14248e72deb7e2\",\"vout\":0}]" "{\"Qd5eHho389mJMCxSzAbe31w2vntTc7192\":1.0, \"QdXtq55Bf443Lkme2hdj4mD8KKepk32f6\":0.99}"
@@ -218,7 +230,8 @@ createrawtransaction "[{\"txid\":\"17b3f9ef530695ef2e0368e445a3b59bf12811bdfd423
 
 ### decoderawtransaction "hexstring" ( iswitness )
 
-Gives the decoded data from a raw hex-encoded transaction. Here we decode the results from creatrawtransaction above.
+Gives the decoded data from a raw hex-encoded transaction. Here we decode the results from `createrawtransaction` above.
+
 
 ```
 decoderawtransaction 0200000<snip>f33ad0000000
@@ -291,7 +304,7 @@ L3vaEHms4VpciP85UsufQf3Gfa9p5gatBGm6Z4rD8FxzFLdXE5V
 
 ### dumpwallet "filename"
 
-Writes all wallet the private keys in file in a human-readable format. The wallet must be fully decrypted (not just for staking only) for this command to work. Returns the filename. Dumpwallet will save all the private keys and their addresses; it will not save watch only addresses (which do not have private keys). This file contains all the private keys in the wallet (1,000 or more), be very careful and do not store the dump file online.
+Writes all the wallet private keys to a file in clear text (unencrypted) format. The wallet must be fully decrypted (not just for staking only) for this command to work. Returns the filename. Dumpwallet will save all the private keys and their addresses; it will not save watchonly addresses (which do not have private keys in the wallet). This file contains all the private keys in the wallet (1,000 or more), be very careful and do not store the dump file online.
 
 On PC:
 
@@ -302,7 +315,10 @@ dumpwallet "C:\Users\<username>\Desktop\Backups\dump 2018-10-30.txt"
   "filename": "C:\\Users\\<username>\\Desktop\\Backups\\dump 2018-10-30.txt"
 }
 ```
+
+
 File:
+
 ```
   Wallet dump created by Qtum v0.16.1.0-0806c12c4-dirty
   * Created on 2018-10-31T01:56:32Z
@@ -311,6 +327,7 @@ File:
 
   extended private masterkey: <snip>
 ```
+
 
 On Mac:
 
@@ -323,7 +340,10 @@ dumpwallet /Users/<USERNAME>/Desktop/dump_2018-12-15.txt
 
 }
 ```
+
+
 File:
+
 ```
   Wallet dump created by Qtum v0.16.2.0-47a30461d-dirty
   * Created on 2018-12-16T02:22:59Z
@@ -341,12 +361,13 @@ Encrypts the wallet with “passphrase” for first-time encryption. After encry
 ```
 encryptwallet "you should always use a long and strong passphrase"
 ```
+(wallet exits)
 
 ### echo “message”
 
 Hidden command. Simply echo back the input arguments. This command is for testing.
 
-The difference between echo and echojson is that echojson has argument conversion enabled in the client-side table in qtum-cli and the GUI. There is no server-side difference. Here we echo the parameters to setup a multisig address.
+The difference between echo and echojson is that echojson has argument conversion enabled in the client-side table in qtum-cli and the GUI. There is no server-side difference. Here we echo the parameters used to setup a multisig address.
 
 ```
 echo "[\"qghwDvb1pyJoqoAD2ESMTevvvjUfNvReDn\",\"qfKr7vXdmroHi61XUUHedXvgV2mDx9Kudb\"]"
@@ -360,7 +381,7 @@ echo "[\"qghwDvb1pyJoqoAD2ESMTevvvjUfNvReDn\",\"qfKr7vXdmroHi61XUUHedXvgV2mDx9Ku
 
 Hidden command. Simply echo back the input arguments. This command is for testing.
 
-The difference between echo and echojson is that echojson has argument conversion enabled in the client-side table in qtum-cli and the GUI. There is no server-side difference. Here we echo the parameters to setup a multisig address.
+The difference between echo and echojson is that echojson has argument conversion enabled in the client-side table in qtum-cli and the GUI. There is no server-side difference. Here we echo the parameters used to setup a multisig address.
 
 ```
 echojson
@@ -376,7 +397,8 @@ echojson
 
 ### estimatefee nblocks
 
-DEPRECATED. Please use estimatesmartfee for more intelligent estimates. Estimates the approximate fee per kilobyte needed for a transaction to begin confirmation within nblocks blocks.
+DEPRECATED. Please use `estimatesmartfee` for better estimates. Estimates the approximate fee per kilobyte needed for a transaction to begin confirmation within nblocks blocks.
+
 
 ```
 estimatefee 10
@@ -386,7 +408,7 @@ estimatefee is deprecated and will be fully removed in v0.17.
 
 ### estimaterawfee conf_target (threshold)
 
-Hidden command. WARNING: This interface is unstable and may disappear or change, and the results are tightly coupled to the calling parameters.
+Hidden command. WARNING: This command is unstable and may disappear or change, and the results are tightly coupled to the calling parameters.
 
 Gives fee estimates for short, medium, and long term confirmations, and gives mempool statistics for transactions with those fees. Estimates the approximate fee per kilobyte needed for a transaction to begin confirmation within conf_target blocks.
 
@@ -483,11 +505,13 @@ fromhexaddress 9467c4cbd6c4bb736cf4724de25a298bc529bfa3
 QXvN7L3D2NkdPgt20rYrGkSPCggwkKbqa
 ```
 
-See gethexaddress to convert a base58 pubkeyhash to a hex address.
+
+See `gethexaddress` to convert a base58 pubkeyhash to a hex address.
 
 ### fundrawtransaction "hexstring" ( options iswitness )
 
-Select and add inputs to a transaction until it has enough in value to meet its out value. Collects one or more unspent transactions as inputs, and computes and specifies the change amount. Note that inputs which were signed may need to be resigned after completion since in/outputs have been added. The inputs added will not be signed, use signrawtransaction for that.
+Select and add inputs to a transaction until it has enough in value to meet its out value. Collects one or more unspent transactions as inputs, and computes and specifies the change amount. Note that inputs which were signed may need to be resigned after completion since in/outputs have been added. The inputs added will not be signed, use `signrawtransaction` for that.
+
 
 ```
 fundrawtransaction "02000000000140620b00000000001875c9289dc9ffac451edb8229dd6e95221cd3b5c23af2698ec00000000"
@@ -501,7 +525,8 @@ fundrawtransaction "02000000000140620b00000000001875c9289dc9ffac451edb8229dd6e95
 
 ### generate nblocks ( maxtries )
 
-Mine up to nblocks blocks immediately to an address in the wallet. Used with the regression test "regtest" private test blockchain. Can use “generate 1” to publish waiting transactions in the next block.
+Mine up to nblocks blocks immediately to an address in the wallet. Used with the regression test "regtest" private test blockchain. Can use `generate 1` to publish waiting transactions in the next block, or `generate 600` to initialize a new regtest blockchain.
+
 
 ```
 docker exec myapp qcli generate 600
@@ -517,7 +542,7 @@ docker exec myapp qcli generate 600
 
 ### generatetoaddress nblocks address (maxtries)
 
-Mine up to nblocks immediately to a specified address. Used with the regression test "regtest" private test blockchain. Here we generate 10 genesis blocks on regtest at 20,000 Test QTUM each, plus an initial block, and “listaddressgroupings” shows the result:
+Mine up to nblocks immediately to a specified address. Used with the regression test "regtest" private test blockchain. Here we generate 10 genesis blocks on regtest with 20,000 Test QTUM each, plus an initial block, and “listaddressgroupings” shows the result:
 
 ```
 PS C:\Users\Test> docker exec myapp qcli generatetoaddress 10 "qNe5aDdubCGRaTp7vDYL4BASjzVH7c7Yc"
@@ -533,7 +558,9 @@ PS C:\Users\Test> docker exec myapp qcli generatetoaddress 10 "qNe5aDdubCGRaTp7v
   "35482c05e5b5b173cd5ae3e1665d9b33811a4358249d566fded891b9d772ac5",
   "06d5849f0b3c91ad215e364d183b39c4e156ea4024cb5337cadc47fb2a54cca"
 ]
+
 PS C:\Users\Test> docker exec myapp qcli listaddressgroupings
+
 [
   [
     [
@@ -595,7 +622,8 @@ getaccountinfo fe59cbc1704e89a698571413a81f0de9d8f00c69
 
 ### getaddednodeinfo ( "node" )
 
-Returns information about nodes that have been manually added using the addnode command.
+Returns information about nodes that have been manually added using the `addnode` command.
+
 
 ```
 getaddednodeinfo
@@ -638,7 +666,7 @@ getaddressesbyaccount "MyAccount1"
 
 ### getbalance ( "account" minconf include_watchonly )
 
-Get the balance for a wallet.
+Get the balance in QTUM for a wallet.
 
 ```
 getbalance
@@ -757,11 +785,11 @@ getblockchaininfo
 }
 ```
 
-![2019-7 addnode command](https://i.imgur.com/4JAvAaG.jpg) 
+![2019-7 getblockchaininfo](https://i.imgur.com/4JAvAaG.jpg)
 
 ### getblockcount
 
-Returns the number of blocks in the longest blockchain.
+Returns the number of blocks in the main (longest with most difficulty) blockchain.
 
 ```
 getblockcount
@@ -864,7 +892,7 @@ getblocktemplate
 
 ### getchaintips
 
-Return information about all known tips in the block tree, including the main chain as well as orphaned branches. Will display chain tips since the wallet launched because only the main chain will be synced from other peers before this wallet launched. The status “active” is the mainchain, “valid-fork” are orphan blocks, and “valid headers” are not on the blockchain.
+Return information about all known tips in the block tree, including the main chain as well as orphaned branches. Will display chain tips since the wallet launched because only the main chain will be synced from other peers when this wallet launched. The status “active” is the mainchain, “valid-fork” are orphan blocks, and “valid headers” are not on the blockchain.
 
 ```
 getchaintips
@@ -901,6 +929,13 @@ getchaintips
 
 Compute statistics about the total number and rate of transactions in the chain, where the default “window” is the last one month.
 
+* “time” gives the UNIX timestamp for the last block in the window
+* “txcount” gives the total transactions from the launch of the blockchain
+* “window_block_count” gives the number of blocks in the window (675 TX/day * 30 days)
+* “window_interval” gives the window length in seconds
+* “txrate” gives the average transactions per second (TPS) in the window
+
+
 ```
 getchaintxstats
 
@@ -914,12 +949,6 @@ getchaintxstats
 }
 ```
 
-time gives the UNIX timestamp for the last block in the window
-txcount gives the total transactions from the start of the chain
-window_block_count gives the number of blocks in the window (675 * 30)
-window_interval gives the window length in seconds
-txrate gives the average transactions per second (TPS) in the window
-
 ### getconnectioncount
 
 Get the peer connection count for the wallet, typically 8 for outgoing only peer connections, or up to 125 for outgoing + incoming connections.
@@ -932,7 +961,7 @@ getconnectioncount
 
 ### getdifficulty
 
-Proof-of-stake difficulty gives the Proof of Stake consensus target from the most recent block (proof-of-work is not used in Qtum).
+Proof-of-stake difficulty gives the Proof of Stake consensus target from the most recent block (proof-of-work is not used after the genesis blocks).
 
 ```
 getdifficulty
@@ -953,11 +982,14 @@ gethexaddress QXvN7L3D2NkdPgt20rYrGkSPCggwkKbqa
 9467c4cbd6c4bb736cf4724de25a298bc529bfa3
 ```
 
-See fromhexaddress to convert a hex address to base58 pubkeyhash.
+
+
+See `fromhexaddress` to convert a hex address to base58 pubkeyhash.
 
 ### getinfo
 
-Hidden command. DEPERCATED. Command line interfaces (but not the qtum-qt GUI wallet) may invoke this command using “-getinfo”. The wallet below has a computer clock in sync with Qtum network time (timeoffset = 0), has 8 peer connections, and is unlocked for a long time (unlocked until is Unix epoch time in seconds).
+Hidden command. DEPERCATED. Command line interfaces (but not the qtum-qt GUI wallet) may invoke this command using `-getinfo`. The wallet below has a computer clock in sync with Qtum network time (timeoffset = 0), has 8 peer connections, and is unlocked for a long time (“unlocked until” is Unix epoch time in seconds).
+
 
 ```
 qtum-cli -getinfo
@@ -1063,7 +1095,7 @@ getmempoolentry "0cc99a30bc2064041ea4263835b4ed594ff500c56d6b14e4970aeee548e7138
 
 ### getmempoolinfo
 
-Returns details on the active state of the memory pool. Here is a single transaction waiting in the memory pool:
+Returns details on the active state of the memory pool. Here a single transaction is waiting in the memory pool:
 
 ```
 getmempoolinfo
@@ -1080,7 +1112,7 @@ getmempoolinfo
 
 ### getmininginfo
 
-Gives mining information including network weight (12.27 million shown below) and wallet weight (107.6).
+Gives mining information including network weight (“netstakeweight” of 12.27 million shown below) and wallet weight (“stakeweight” of 107.6).
 
 ```
 getmininginfo
@@ -1134,7 +1166,7 @@ getnettotals
 
 ### getnetworkhashps ( nblocks height )
 
-DEPRECATED. Returns a network hash value related to block mining difficulty, which is not relevant to Qtum Proof of Stake, where the network hashes per second is the total number of nodes divided by 16 seconds.
+DEPRECATED. Returns a network hash value related to block mining difficulty, which is not relevant to Qtum Proof of Stake, for which the network hashes per second is the total number of nodes divided by 16 seconds.
 
 ```
 getnetworkhashps
@@ -1191,15 +1223,13 @@ getnetworkinfo
 
 ### getnewaddress ( "account" "address_type" )
 
-Get a new receiving address, with types “legacy”, “p2sh-segwit” or “bech32”
+Get a new receiving address, with types “legacy”, “p2sh-segwit” or “bech32”. Qtum Mainnet legacy addresses start with a “Q”, and SegWit addresses will start with an "M" for p2sh-segwit and "qc1" for bech32. Qtum Testnet legacy addresses start with a “q”, and SegWit addresses will start with an "m" for p2sh-segwit and "tq1" for bech32. Here we get a new Mainnet SegWit bech32 address:
 
 ```
 getnewaddress "" "bech32"
 
 qc1q52g2c283225pfdm2wqdsk45aufm4urtcdp9d5
 ```
-
-Qtum legacy addresses start with a “Q”, and SegWit addresses will start with a "M" for p2sh-segwit and "qc1" for bech32.
 
 ### getpeerinfo
 
@@ -1332,8 +1362,7 @@ getpeerinfo
 
 ### getrawchangeaddress ( "address_type" )
 
-Returns a new address for receiving change with raw transactions, not for normal use.
-The address type may be "legacy", "p2sh-segwit" or "bech32"
+Returns a new address for receiving change with raw transactions, used for composing raw transactions. The address type may be "legacy", "p2sh-segwit" or "bech32"
 
 ```
 getrawchangeaddress "p2sh-segwit"
@@ -1417,7 +1446,8 @@ getrawtransaction cbd113e947d5c1b3fccae149d0d16c82e3bfe05c4f2c204c8bc65ae0697bbd
 }
 ```
 
-For the transaction above, one “vin” UTXO input gives a previous transaction and two outputs “vout”. The first output sends 300.685401 to a receiving address, the second sends 11769.78668720 QTUM to a change address.
+
+The transaction above has one “vin” UTXO input which provides the previous transaction to be spent and two outputs “vout”. The first output “vout” sends 300.685401 to a receiving address, the second sends 11769.78668720 QTUM to a change address. The difference in value between the inputs and outputs is the mining fee.
 
 ### getreceivedbyaccount "account" ( minconf )
 
@@ -1443,16 +1473,16 @@ getreceivedbyaddress QfWtnPq9M4a7Fmeeh6dyu0s4KR59F9xn
 
 Returns staking-related information.
 
-* “enabled”: true means the wallet was launched with staking allowed (command line option “-staking=false” was not used)
-* “staking” true means the wallet is staking (decrypted, mature coins, blockchain synced)
-* “errors” gives the various errors (rare)
+* “enabled”: true means the wallet was launched with staking allowed (command line option `-staking=false` was not used)
+* “staking”: true means the wallet is staking (decrypted, mature coins, blockchain synced)
+* “errors” gives various errors (rare)
 * “currentblocktx” gives the number of transactions in a block mined by the wallet
 * “pooledtx” gives the number of transactions waiting in the mempool
-* “difficulty” gives the PoS target difficulty for the current block.
-* “search-interval” gives either the time in seconds since the wallet began staking or the time since the wallet’s most recent block reward, here one day and one minute.
-* “weight” gives the wallet weight (mature coins staking) 
-* “netstakeweight” gives the estimated network weight. weight and netstakeweight are given in Satoshis, move the decimal point eight digits to the left to give these weights in units, here wallet weight of 148 QTUM and network weight of 12.23 million
-* “expected time” gives the estimate of expected time to a block reward in seconds, here 4.59 months
+* “difficulty” gives the PoS target difficulty for the current block
+* “search-interval” gives either the time in seconds since the wallet began staking or the time since the wallet’s most recent block reward, here one day and one minute
+* “weight” gives the wallet weight in Satoshis, move the decimal point eight digits to the left to give these weights in units, here wallet weight is 148 QTUM and the network weight is 12.23 million
+* “netstakeweight” gives the estimated network weight
+* “expected time” gives an estimate of the average expected time to a block reward in seconds, here 4.59 months
 
 ```
 getstakinginfo
@@ -1473,7 +1503,8 @@ getstakinginfo
 
 ### getstorage "contract address hash"
 
-Get the storage used by a smart contract, may take some minutes to return. Here is the result for the Bodhi token contract. Getaccountinfo also returns smart contract storage, plus address, balance and code. Can take several 10’s of minutes to return.
+Get the storage used by a smart contract, may take 5 to 10 minutes to return. Here is the result for the Bodhi token contract. `getaccountinfo` also returns smart contract storage, plus address, balance, and code.
+
 
 ```
 getstorage 6b8bf98ff497c064e8f0bde13e0c4f5ed5bf8ce7
@@ -1504,7 +1535,7 @@ getsubsidy 990501
 
 ### gettransaction "txid" ( include_watchonly ) (waitconf)
 
-Get detailed information about a transaction in this wallet (send or receive). Here is a send transaction:
+Get detailed information about a transaction for an address in this wallet (send or receive). Here is a send transaction:
 
 ```
 gettransaction 723a08448afca334761f611e93623049f82b43d55cabaf02ef616f972fda51b
@@ -1558,7 +1589,8 @@ gettransaction 723a08448afca334761f611e93623049f82b43d55cabaf02ef616f972fda51b
 
 ### gettransactionreceipt "hash"
 
-Returns details for a contract call transaction, requires -logevents to be enabled for the wallet. Here is a contract call token transfer for Ocash.
+Returns details for a contract call transaction given the transaction ID (hash), requires `-logevents` to be enabled for the wallet. Here is a contract call token transfer for Ocash:
+
 
 ```
 gettransactionreceipt f4c2a055f51777c8d5c2db745f2b8ea300bb4f2f8c0cacfced00c3cea3b0492b
@@ -1592,7 +1624,7 @@ gettransactionreceipt f4c2a055f51777c8d5c2db745f2b8ea300bb4f2f8c0cacfced00c3cea3
 
 ### gettxout "txid" n ( include_mempool )
 
-Return details about an unspent transaction output. Has more detail than listunspent. Will return “null” if the transaction has been spent.
+Return details about an unspent transaction output. Has more detail than `listunspent`. Will return “null” if the transaction has been spent.
 
 ```
 gettxout 9ebd45e58980ef1278d1ba300b1504aaf57ae0239a3cf899bf3d37866dda175 1
@@ -1627,7 +1659,7 @@ gettxoutproof [\"b52cb4ac7ae175bbddf25274acc3944e38cd7ba96277a5c60e223d0f93c442b
 
 ### gettxoutsetinfo
 
-Returns statistics about the whole blockchain unspent UTXOs, may take some time to return.
+Returns statistics about the whole blockchain unspent UTXOs, may take some time to return. “total_amount” gives the current total supply (genesis blocks + total block rewards)
 
 ```
 gettxoutsetinfo
@@ -1644,9 +1676,9 @@ gettxoutsetinfo
 }
 ```
 
-total_amount gives the current total supply (genesis blocks + total block rewards)
-
 ### getunconfirmedbalance
+
+Get the unconfirmed balance for the wallet, which is the amount in transactions received by the wallet that haven’t yet been published in blocks.
 
 ```
 getunconfirmedbalance
@@ -1658,19 +1690,19 @@ getunconfirmedbalance
 
 Returns information about the wallet:
 
-“walletname" – the name of the wallet.dat file currently loaded
-"walletversion" – not the software client version, use getnetworkinfo to check this
-"balance" – balance in QTUM
-"stake" – any balance currently committed to a stake
-"unconfirmed_balance" – any balance that hasn’t been published in the next block
-"immature_balance" – any coinbase (Proof of Work) balance that does not have 500 confirmations, seen only for regtest.
-"txcount" – the total number of transactions in the wallet
-"keypoololdest" – the Unix epoch timestamp in seconds for the oldest key in the key pool
-"keypoolsize" - how many new keys are pre-generated
-"keypoolsize_hd_internal" - how many new keys are pre-generated for internal use (used for change addresses)
-"unlocked_until" – the Unix epoch time in seconds that the wallet is unlocked, or 0 if the wallet is locked, this field is omitted for unencrypted wallets.
-paytxfee" – the transaction fee in QTUM per 1,000 bytes
-"hdmasterkeyid" – a Halsh 160 of the hierarchical deterministic (HD) master public key, this field is omitted of HD in not enabled
+* “walletname" – the name of the wallet.dat file currently loaded
+* "walletversion" – not the software client version, use `getnetworkinfo` to check this
+* "balance" – balance in QTUM
+* "stake" – any balance currently committed to a stake
+* "unconfirmed_balance" – any balance that hasn’t been published in the next blocks
+* "immature_balance" – any coinbase (Proof of Work) balance that does not have 500 confirmations, seen only for regtest.
+* "txcount" – the total number of transactions in the wallet
+* "keypoololdest" – the Unix epoch timestamp in seconds for the oldest key in the key pool
+* "keypoolsize" - how many new keys are pre-generated
+* "keypoolsize_hd_internal" - how many new keys are pre-generated for internal use (used for change addresses)
+* "unlocked_until" – the Unix epoch time in seconds that the wallet is unlocked, or 0 if the wallet is locked, this field is omitted for unencrypted wallets.
+* "paytxfee" – the transaction fee in QTUM per 1,000 bytes
+* "hdmasterkeyid" – a Hash 160 of the hierarchical deterministic (HD) master public key, this field is omitted if HD is not enabled
 
 ```
 getwalletinfo
@@ -1709,7 +1741,7 @@ getblockcount
 
 ### importaddress "address" ( "label" rescan p2sh )
 
-Adds a 34-character Qtum address or 66 hex character public key address that can be watched as if it were in your wallet but cannot be used to spend. The wallet will rescan after entering this command, and should be backed up after adding addresses. Qtum-qt returns “null” and displays the “Watch-only” balance, qtumd returns nothing.
+Adds a 34-character Qtum address or 66 hex character public key address that can be watched as if it were in your wallet but cannot be used to spend. The wallet will rescan after entering this command and should be backed up after adding addresses. Qtum-qt returns “null” and displays the “Watch-only” balance, qtumd returns nothing.
 
 ```
 importaddress QaL29jcCZ39pWcA334dA4BN3peVhnc42D
@@ -1719,7 +1751,7 @@ null
 
 ### importmulti "requests" ( "options" )
 
-Import multiple addresses/scripts (with private or public keys, redeem script (P2SH)), rescanning the blockchain for all the addresses in a single pass. Optional time stamps can control how far back the scanning begins for each address. Requires a new wallet backup after addition of the addresses.
+Import multiple addresses/scripts (with private or public keys, redeem script (P2SH)), rescanning the blockchain for all the new addresses in a single pass. Optional time stamps can control how far back the scanning begins for each address. Requires a new wallet backup after addition of the addresses.
 
 Here we import two watch only addresses and scan the blockchain from 00:00:00 hours GMT on June 1, 2018 (timestamp 1527811200). After entering the command, the wallet will take several minutes to rescan the blockchain for the new addresses:
 
@@ -1754,7 +1786,7 @@ Imports funds without rescan. Corresponding address or script must previously be
 
 Example TO COME.
 
-importpubkey "pubkey" ( "label" rescan )
+### importpubkey "pubkey" ( "label" rescan )
 
 Adds a public key that can be watched as if it were in your wallet but cannot be used to spend. The public key is 66 characters hex, and can be obtained using the validateaddress command. After entering this command, the wallet will rescan for a few minutes, qtum-qt returns “null” and qtumd returns nothing. The wallet should be backed up after importing a public key.
 
@@ -1778,7 +1810,8 @@ null
 
 ### invalidateblock "blockhash"
 
-Hidden command. Permanently marks a block as invalid, as if it violated a consensus rule. Used for software testing or in some rare manual blockchain forking scenarios. Use reconsiderblock to reverse this command. Returns “null” if successful.
+Hidden command. Permanently marks a block as invalid, as if it violated a consensus rule. Used for software testing or in some rare manual blockchain forking scenarios. Use `reconsiderblock` to reverse this command. Returns “null” if successful.
+
 
 ```
 invalidateblock 263f7ab042135cb0e5479afd8385a237f8eb44b86135d29b34eb0fa82cc815f
@@ -1798,7 +1831,7 @@ null
 
 ### listaccounts ( minconf include_watchonly)
 
-DEPRECATED. Returns information about account names as keys, account balances as values. Gives the balance in Satoshis (QTUM x 0.00000001), including the default undefined account.
+DEPRECATED. Returns information about account names and account balances. Gives the balance in Satoshis (QTUM x 0.00000001), including the default undefined account.
 
 This “account” was an attempt to manually track balances from bitcoin which will be removed by version 0.17, because it doesn’t work well, for example, returning negative values:
 
@@ -1832,8 +1865,8 @@ listaddressgroupings
       "QUytYGp47McSy8N6GzycV2Wt92d8JqHWCy",
       0.03160855,
       "MyAccount 1"
-],
-<snip>
+    ],
+    <snip>
   ]
 ]
 ```
@@ -1875,7 +1908,8 @@ listcontracts
 
 ### listlockunspent
 
-Returns a list of temporarily locked (unspendable) outputs. See also the lockunspent and unlock commands. If the wallet is restarted all the locks are cleared.
+Returns a list of temporarily locked (unspendable) outputs. See also the `lockunspent` and `unlock` commands. If the wallet is restarted all the locks are cleared.
+
 
 ```
 listlockunspent
@@ -1890,7 +1924,7 @@ listlockunspent
 
 ### listreceivedbyaccount ( minconf include_empty include_watchonly)
 
-DEPRECATED. List the balance for an account.
+DEPRECATED. List the balance for the accounts.
 
 ```
 listreceivedbyaccount
@@ -1947,7 +1981,9 @@ listreceivedbyaddress
 
 ### listsinceblock ( "blockhash" target_confirmations include_watchonly include_removed )
 
-List all the transactions for your wallet since the given blockhash, of list all the transactions since block 1 if blockhash is not given. The transactions below show a sent and a receive transaction.
+List all the transactions for your wallet since the given blockhash, or a list all the transactions since block 1 if blockhash is not given. The transactions below show a send and a receive transaction.
+
+DO OVER
 
 ```
 listsinceblock a47ca650103803ed84d89ffc3fb8321dcec1de33599cbb4d181f49721c5078e
@@ -1975,22 +2011,24 @@ listsinceblock a47ca650103803ed84d89ffc3fb8321dcec1de33599cbb4d181f49721c5078e
     {
       "account": "",
       "address": "QSt4QHDX3b7kjme42yrj53D6KWep462sx",
-      "category": "receive",
-      "amount": 0.49020000,
+      "category": "send",
+      "amount": -0.49020000,
       "label": "",
-      "vout": 1,
-      "confirmations": 4046,
-      "blockhash": "956d4c424de07943fd487d2df7707bc8213ad8e0381dfe25dfe549ee80ca23af",
-      "blockindex": 2,
-      "blocktime": 1543118440,
-      "txid": "8f1d63f42b135bcc37555c94664cbca0d13cab63565d6334fe1cc22d74dc75",
+      "vout": 0,
+      "fee": -0.00090400,
+      "confirmations": -4046,
+      "trusted": false,
+      "txid": "cae26062777aca1bce7f660dd238af2be4495f4aef1a5a15bbee270b4c3c2de2",
       "walletconflicts": [
+        "edbc788c140b4104aea3d5828493d8eeef04131dd0e94eb7fa731abba14901a6"
       ],
-      "time": 1543118295,
-      "timereceived": 1543118295,
-      "bip125-replaceable": "no"
-    },
-<snip>
+      "time": 1540176510,
+      "timereceived": 1540176510,
+      "bip125-replaceable": "yes",
+      "replaced_by_txid": "edbc788c140b4104aea3d5828493d8eeef04131dd0e94eb7fa731abba14901a6",
+      "abandoned": false
+    }
+  ],<snip>
   ],
   "removed": [
   ],
@@ -2008,39 +2046,39 @@ listtransactions
 [
   {
     "account": "",
-    "address": "qdYtmQPBX4b3LKmte2hgjymD7KTePkF2wj",
+    "address": "Qd5tX39X2bjL9mvF2q5jkuD3Kre2ky79P",
     "category": "receive",
-    "amount": 88.00000000,
+    "amount": 8.50000000,
     "label": "",
     "vout": 1,
-    "confirmations": 3439,
-    "blockhash": "0bb96069fc8f26be6b4b17f2c8389555fb41cbb4297bd9c8806388a325fde75e",
+    "confirmations": 3532,
+    "blockhash": "0bc940fbfc7f66af8c4e11f9d3325a5ec42c69a2ecbd1d870338baeccf3e95d",
     "blockindex": 2,
-    "blocktime": 1542669072,
-    "txid": "97cf6ac43d6dae714efd1e883b50c3ec5646ed4621b06a1ac0d78ed6fedf8953",
+    "blocktime": 1575639472,
+    "txid": "95cf7a43c6ea87348fe1f8b365fcbed5579ea4422b16cbad0377ef6ee2f99af",
     "walletconflicts": [
     ],
-    "time": 1542669072,
-    "timereceived": 1542688725,
+    "time": 1575639440,
+    "timereceived": 1575639472,
     "bip125-replaceable": "no"
   },
   {
     "account": "",
-    "address": "qXvhQSUpmv7Hm6wMpWB6ooohTBVg3aATgo",
+    "address": "QxW4S91mx3HM3qMB446ovoeT3VC341nr9",
     "category": "send",
-    "amount": -1139.58348299,
+    "amount": -1.58540000,
     "label": "",
     "vout": 0,
     "fee": -0.02003200,
-    "confirmations": 1660,
-    "blockhash": "6b7ce7e6d5b320a7250925d84adeb4a349a054e988b16498b707d1795ac9279c",
+    "confirmations": 1680,
+    "blockhash": "6c6cbeaa5b480a39ad92d484bd3bcae4aa334b923b614f4b897ed736ad9e21f",
     "blockindex": 2,
-    "blocktime": 1542925648,
+    "blocktime": 1542934848,
     "txid": "55dc28cbff0ff7a94e5cb51a928703911baac60892bc6dea575bbdb9b3302673",
     "walletconflicts": [
     ],
-    "time": 1542925628,
-    "timereceived": 1542925628,
+    "time": 1542934828,
+    "timereceived": 1542934828,
     "bip125-replaceable": "no",
     "abandoned": false
   },
@@ -2089,21 +2127,24 @@ listunspent
 Gives the currently loaded wallet.dat file, usually “wallet.dat” unless you can load a different file with “Restore Wallet”.
 
 ```
-Listwallets
+listwallets
 
 [
   "wallet1132019.dat"
 ]
 ```
 
-lockunspent unlock ([{"txid":"txid","vout":n},...])
 
-Updates list of temporarily unspendable outputs. Temporarily lock (unlock=false as shown below) or unlock (unlock=true) the specified transaction outputs. If no transaction outputs are specified when unlocking then all current locked transaction outputs are unlocked.
+### lockunspent unlock ([{"txid":"txid","vout":n},...])
 
-A locked transaction output will not be chosen by automatic coin selection, when spending qtums.
-Locks are stored in memory only. Nodes start with zero locked outputs, and the locked output list is always cleared (by virtue of process exit) when a node stops or fails. Also see the listunspent call.
+Updates list of temporarily unspendable outputs. Temporarily lock (unlock=false as shown below) or unlock (unlock=true) the specified transaction outputs. If no transactions are specified when unlocking then all current locked transactions are unlocked.
 
-‘’’
+A locked transaction output will not be chosen by automatic coin selection when spending QTUM.
+
+Locks are stored in memory only. Wallets launch with zero locked outputs and the locked output list is always cleared (by virtue of process exit) when a wallet stops or fails. Also see the `listunspent` call.
+
+
+```
 lockunspent false "[{\"txid\":\"9fc384b55230ca1899dd1acf081033ebf57ae0335abf692c4f8a6336befc2f6\",\"vout\":1}]"
 
 true
@@ -2111,9 +2152,9 @@ true
 
 ### logging ( <include> <exclude> )
 
-Gets and sets the logging configuration for the debug.log file. When called without an argument, returns the list of categories with status that are currently being debug logged or not. When called with arguments, adds or removes categories from debug logging. The arguments are evaluated in order "include", "exclude". If an item is both included and excluded, it will thus end up being excluded.
+Gets and sets the logging configuration for the debug.log file. When called without an argument, returns the list of categories with status that are currently being debug logged or not. When called with arguments, adds or removes categories from debug logging. The arguments are evaluated in order "include" then "exclude". If an item is both included and excluded, it will thus end up being excluded.
 
-The valid logging categories are: net, tor, mempool, http, bench, zmq, db, rpc, estimatefee, addrman, selectcoins, reindex, cmpctblock, rand, prune, proxy, mempoolrej, libevent, coindb, qt, leveldb, coinstake, http-poll.
+The valid logging categories are: net, tor, mempool, http, bench, zmq, db, rpc, estimatefee, addrman, selectcoins, reindex, cmpctblock, rand, prune, proxy, mempoolrej, libevent, coindb, qt, leveldb, coinstake, and http-poll.
 
 Here we turn on logging for “mempool” and “mempoolrej” (they are listed first for “include”) and turn off “http”. Returns the current debug logging status.
 
@@ -2155,12 +2196,12 @@ DEPRECATED. Move a specified amount from one account in your wallet to another. 
 move "Test Addr" "LTCp2shsegwit" 1.1
 
 true
-``
+```
 
 ### ping
 
-Requests that a ping be sent to all other nodes, to measure ping time.
-Results provided in getpeerinfo, pingtime and pingwait fields are decimal seconds (does not provide a direct result like using “ping” from a system command prompt. Ping command is handled in queue with all other commands, so it measures processing backlog, not just network ping.
+Requests that a ping be sent to other peers, to measure ping time. Results are provided in `getpeerinfo`, “pingtime” and “pingwait” fields are decimal seconds (does not provide a direct result like using “ping” from a system command prompt). The ping command is handled in queue with all other commands, so it measures processing backlog, not just network ping.
+
 
 ```
 ping
@@ -2196,6 +2237,8 @@ Prune the blockchain up to a given block. Pruning removes spent transitions to r
 qtum-qt.exe -prune=2000
 ```
 
+
+
 Then you can give the command
 
 ```
@@ -2204,11 +2247,14 @@ pruneblockchain 125000
 125000
 ```
 
+
+
 Don’t prune the blockchain if your wallet accepts incoming connections (over 8 peers) because your wallet needs to be able to send all the blocks to new peers coming online.
 
 ### reconsiderblock "blockhash"
 
-Hidden command. Removes invalidity status of a block and its descendants, used for code testing or in manual blockchain reorganization. This command can reverse the effects of invalidateblock. Returns “null” if successful:
+Hidden command. Removes invalidity status of a block and its descendants, used for code testing or in manual blockchain reorganization. This command can reverse the effects of `invalidateblock`. Returns “null” if successful:
+
 
 ```
 reconsiderblock 263f7ab042135cb0e5479afd8385a237f8eb44b86135d29b34eb0fa82cc815f
@@ -2228,7 +2274,7 @@ null
 
 ### rescanblockchain ("start_height") ("stop_height")
 
-Rescan the local blockchain for wallet related transactions. An optional start height and stop height can be used, or by default scan the entire blockchain. This command will scan the blockchain for transactions of your wallet, and can be used if the wallet balance doesn’t appear to be correct after a wallet restore or adding private keys. Returns the start and top height scanned.
+Rescan the local blockchain for wallet transactions. An optional start height and stop height can be used, or by default scan the entire blockchain. This command will scan the blockchain for transactions of your wallet, and can be used if the wallet balance doesn’t appear to be correct after a wallet restore or adding private keys. Returns the start and top height scanned.
 
 ```
 rescanblockchain 100000 200000
@@ -2241,7 +2287,7 @@ rescanblockchain 100000 200000
 
 ### resendwallettransactions
 
-Hidden command. Immediately re-broadcast unconfirmed wallet transactions to all peers. The wallet periodically re-broadcast automatically, so this can be used for testing. Here two transactions were stuck in the local mempool (only) after restarting the wallet.
+Hidden command. Immediately re-broadcast unconfirmed wallet transactions to all peers. The wallet periodically re-broadcasts automatically, so this can be used for testing. Here two transactions were resent after being stuck in the local mempool after restarting the wallet.
 
 ```
 resendwallettransactions
@@ -2277,7 +2323,7 @@ null
 
 ### searchlogs <fromBlock> <toBlock> (address) (topics)
 
-Return the smart contract log events between two blocks (inclusive). The command requires -logevents to be enabled. Use the contract address hash if desired.
+Return the smart contract log events between two blocks (inclusive). The command requires -logevents to be enabled on wallet startup. Use the contract address hash if desired.
 
 ```
 searchlogs 274690 274700
@@ -2334,7 +2380,8 @@ searchlogs 274690 274700
 
 ### sendfrom "fromaccount" "toaddress" amount ( minconf "comment" "comment_to" )
 
-DEPRECATED (use sendtoaddress). Send an amount to a Qtum address, requires the wallet to be unlocked. The “account” is for notation, it does not control the source of UTXOs. If successful, returns the transaction ID.
+DEPRECATED (use `sendtoaddress`). Send an amount to a Qtum address, requires the wallet to be unlocked. The “account” is for notation, it does not control the source of UTXOs. If successful, returns the transaction ID.
+
 
 ```
 sendfrom "" QcEz4erq5gH6sa3ujWsqpZW4869MwrQf5 1.0
@@ -2344,7 +2391,7 @@ sendfrom "" QcEz4erq5gH6sa3ujWsqpZW4869MwrQf5 1.0
 
 ### sendmany "fromaccount" {"address":amount,...} ( minconf "comment" ["address",...] replaceable conf_target "estimate_mode")
 
-Send to multiple addresses, requires the wallet to unlocked. Amounts are floating point in QTUM. Don’t put blank spaces into the parameters. If successful, returns a single transaction ID containing all the outputs.
+Send to multiple addresses, requires the wallet to unlocked. Amounts are floating point in QTUM. Don’t put blank spaces into the parameters. If successful, returns a single transaction ID containing all the outputs. Here we send to two different addresses:
 
 ```
 sendmany "" "{\"QcEz4erq5gH6sa3ujWsqpZW4869MwrQf5\":0.5,\"QM5yJs3v3u9vAVE5XseFa9g63ke6Ld9Wp\":0.77}"
@@ -2352,9 +2399,10 @@ sendmany "" "{\"QcEz4erq5gH6sa3ujWsqpZW4869MwrQf5\":0.5,\"QM5yJs3v3u9vAVE5XseFa9
 7a5077ac6e42acbed182c35eb034702e1fadd5c7d1547a85ae63dc0e151ed5
 ```
 
+
 ### sendmanywithdupes "fromaccount" {"address":amount,...} ( minconf "comment" ["address",...] )
 
-Send to multiple addresses, requires the wallet to be unlocked. Amounts are floating point in QTUM. Can send to duplicate addresses which sendmany can’t do. If successful, returns a single transaction ID containing all the outputs.
+Send to multiple addresses, requires the wallet to be unlocked. Amounts are floating point in QTUM. Can send to duplicate addresses which `sendmany` can’t do. If successful, returns a single transaction ID containing all the outputs. Here we send two transactions to the same address:
 
 ```
 sendmanywithdupes "" "{\"QFKw7VXsm23Hi71KUU5dXvpV3mDc9Au29\":200.0,\"QFKw7VXsm23Hi71KUU5dXvpV3mDc9Au29\":250.0}"
@@ -2364,7 +2412,8 @@ sendmanywithdupes "" "{\"QFKw7VXsm23Hi71KUU5dXvpV3mDc9Au29\":200.0,\"QFKw7VXsm23
 
 ### sendrawtransaction "hexstring" ( allowhighfees )
 
-Transmits a raw hex-encoded transaction to the network. Also see createrawtransaction and signrawtransaction. Returns the transaction hash in hex, which is the transaction ID.
+Transmits a raw hex-encoded transaction to the network. Also see `createrawtransaction` and `signrawtransaction`. Returns the transaction hash in hex, which is the transaction ID.
+
 
 ```
 sendrawtransaction 020000003d6b5df207d94bafb4520adca3871fdaf397afd20f60f0a39c6fc353ae18000000006b5734040229999abc42d6d1e095b07b4538cb8a1b4ea2c42852feffcfb36dc8494b5238f24402100514aab22c8be9458056bb14f755adae12adf15721eb0b6cd314230237c26707210dd486ffc6e7ea92f2b30e428c1f3726e3dfc09418bb815f64bd32d7d5836f89fffffff0301e1d505420000002976b414d4fcc597395462ec3fdab4d6b49bc9af53fed3d87add09fe60400000001986a824dcead1313bfdde586b8bc3cd2ace54d4fa4b6f6887ad0000000
@@ -2391,8 +2440,8 @@ Arguments:
 2. "datahex"  (string, required) data to send
 3. "amount"      (numeric or string, optional) The amount in QTUM to send, default: 0
 4. gasLimit  (numeric or string, optional) gasLimit, default: 250000, max: 40000000
-5. gasPrice  (numeric or string, optional) gasPrice Qtum price per gas unit, default: 0.0000004, min:0.0000004
-6. "senderaddress" (string, optional) The quantum address that will be used as sender
+5. gasPrice  (numeric or string, optional) gasPrice QTUM price per gas unit, default: 0.0000004, min:0.0000004
+6. "senderaddress" (string, optional) The Qtum address that will be used as sender
 7. "broadcast" (bool, optional, default=true) Whether to broadcast the transaction or not
 8. "changeToSender" (bool, optional, default=true) Return the change to the sender
 
@@ -2418,7 +2467,8 @@ setaccount "QJv3YhWxG6EC2cpqZM5E3fjGzXYgakezm" "My New Account"
 null
 ```
 
-setban "subnet" "add|remove" (bantime) (absolute)
+
+### setban "subnet" "add|remove" (bantime) (absolute)
 
 Attempts to add or remove an IP address from the banned list. Use “add” to add a ban, and give the duration of the ban in seconds. Returns “null” if successful. Here we add a ban for one day and confirm the result with “listbanned”:
 
@@ -2426,6 +2476,7 @@ Attempts to add or remove an IP address from the banned list. Use “add” to a
 setban "116.61.213.45" "add" 86400
 
 null
+
 
 listbanned
 
@@ -2467,7 +2518,9 @@ settxfee 0.01
 true
 ```
 
-getwalletinfo would show "paytxfee": 0.01000000,
+
+
+`getwalletinfo` would show "paytxfee": 0.01000000,
 
 ### signmessage "address" "message"
 
@@ -2479,7 +2532,9 @@ signmessage "Qg3WDvb1Ey2oqAW2EpM5evdv3Ufnvre3n" "message"
 IJTWLjS9oma8M+EsXVnESR12jONwjMky4YimE0cQnvtAcQyim3lJPQ58Q6IADifR3I10LyMctNAe+2Kc274AqLu=
 ```
 
-Use verifymessage to verify a message.
+
+
+Use `verifymessage` to verify a message.
 
 ### signmessagewithprivkey "privkey" "message"
 
@@ -2493,11 +2548,13 @@ signmessagewithprivkey(…)
 H3SBMeQUvo82A63wegSNT582Puziba54sCGt6notPb3xHm3WwM2OuIwV4E9Ya38TMCqe2aV7rmuFrc9A2Qb+t3A=
 ```
 
+
 Use verifymessage to verify a message.
 
 ### signrawtransaction "hexstring" ( [{"txid":"id","vout":n,"scriptPubKey":"hex","redeemScript":"hex"},...] ["privatekey1",...] sighashtype )
 
-Signs a raw transaction in preparation for sending to the network. The wallet must be unlocked. See createrawtransaction and sendrawtransaction.
+Signs a raw transaction in preparation for sending to the network. The wallet must be unlocked. See `createrawtransaction` and `sendrawtransaction`.
+
 
 ```
 signrawtransaction 020000001d637cf207c6418fb6220cfcb2b141ba5d230f0ba0a43c68b358aff9a8a6000000000fffffff0509e5f50480000001983a952d5fb15a70832ffdc3cadd3dc7749a49bf053ed6defacd09ef6060000000187aa814bd4ae4167bebbf56bb7c51c5eabf35d50a5c6e7f33ad0000000
@@ -2518,7 +2575,9 @@ stop
 
 ### submitblock "hexdata"  ( "dummy" )
 
-Attempts to submit new block to network. See https://en.bitcoin.it/wiki/BIP_0022 for full specification.
+Attempts to submit new block to network. See https://en.bitcoin.it/wiki/BIP_0022 for full specification. Use `getblocktemplate` to construct a block and convert to hex using ?????
+
+XXXXX
 
 Arguments
 1. "hexdata"        (string, required) the hex-encoded block data to submit
@@ -2541,14 +2600,14 @@ null
 Gives the wallet uptime (since starting) in seconds.
 
 ```
-Uptime
+uptime
 
 12592
 ```
 
 ### validateaddress "address"
 
-The multisig address from addmultisigaddress
+Return detailed information about an address, here the multisig address from `addmultisigaddress`:
 
 ```
 validateaddress mKa7c52cX97eK4vdk35jV442p3j59hk3R
@@ -2591,27 +2650,31 @@ true
 Verify a signed message. Returns true or false.
 
 ```
-verifymessage "Qg3WDvb1Ey2oqAW2EpM5evdv3Ufnvre3n" "IJTWLjS9oma8M+EsXVnESR12jONwjMky4YimE0cQnvtAcQyim3lJPQ58Q6IADifR3I10LyMctNAe+2Kc274AqLu=" "message"
+verifymessage "Qg3WDvb1Ey2oqAW2EpM5evdv3Ufnvre3n" "IJTWLjS9oma8M+EsXVnESR12jONwjMky4YimE0cQnvtAcQyim3lJPQ58Q6IADifR3I10LyMctNAe+2Kc274AqLu=" "hello world"
 
 true
 ```
 
-See signmessage for creating a message signature.
+
+
+See `signmessage` for creating a message signature.
 
 ### verifytxoutproof "proof"
 
 Verifies that a proof points to a transaction in a block, returning the transaction it commits to
-and throwing an RPC error if the block is not in our best chain
+and throwing an RPC error if the block is not in the best chain
 
 Arguments:
 1. "proof"    (string, required) The hex-encoded proof generated by gettxoutproof
 
 Result:
-["txid"]      (array, strings) The txid(s) which the proof commits to, or empty array if the proof is invalid
+["txid"]      (array, strings) The txid(s) which the proof commits to, or empty array if the proof is invalid.
+
+EXAMPLE
 
 ### waitforblock <blockhash> (timeout)
 
-Hidden command. Used to monitor when blockchain reloading has reached a given block. For command line interfaces to qtumd, the command returns after the given block is loaded. This example waits for Mainnet block 150,000:
+Hidden command. Used to monitor when blockchain reloading has reached a given block. For command line interfaces like qtumd, the command returns after the given block is loaded. This example waits for Mainnet block 150,000:
 
 ```
 qtum-cli waitforblock ae4699ac0a8f4d1170767167fd3b0639312850ce33dcb55a0afd0f5c1a88406f
@@ -2637,6 +2700,8 @@ docker exec myapp qcli waitforblockheight 7210
 }
 ```
 
+
+
 On Mainnet with qtumd:
 
 ```
@@ -2652,9 +2717,9 @@ qtum-cli waitforblockheight 281985
 
 requires -logevents to be enabled
 
-Waits for a new logs and return matching log entries. When the call returns, it also specifies the next block number to start waiting for new logs. By calling waitforlogs repeatedly using the returned `nextBlock` number, a client can receive a stream of up-to-date log entries.
+Waits for a new logs and returns matching log entries. When the call returns, it also specifies the next block number to start waiting for new logs. By calling waitforlogs repeatedly using the returned `nextBlock` number, a client can receive a stream of up-to-date log entries.
 
-This call is different from the similarly named `waitforlogs`. This call returns individual matching log entries, `searchlogs` returns a transaction receipt if one of the log entries of that transaction matches the filter conditions.
+This call is different from the similarly named `searchlogs`. This call returns individual matching log entries, `searchlogs` returns a transaction receipt if one of the log entries of that transaction matches the filter conditions.
 
 Arguments:
 1. fromBlock (int | "latest", optional, default=null) The block number to start looking for logs. ()
@@ -2679,6 +2744,8 @@ waitfornewblock
 }
 ```
 
+
+
 On Mainnet with qtumd:
 
 ```
@@ -2700,7 +2767,9 @@ walletlock
 null
 ```
 
-qtum-cli returns no response, but you can check with getwalletinfo for "unlocked_until": 0 and check the padlock icon on qtum-qt.
+
+
+qtum-cli returns no response, but you can check with `getwalletinfo` for "unlocked_until": 0 and check the padlock icon on qtum-qt.
 
 ### walletpassphrase "passphrase" timeout ( true )
 
@@ -2712,26 +2781,22 @@ This command would unlock the wallet for 10 minutes:
 walletpassphrase "you should always use a long and strong passphrase" 600
 ```
 
+
 This command would unlock the wallet for staking only for a long time:
 
 ```
 walletpassphrase "you should always use a long and strong passphrase" 99999999 true
 ```
 
-The qtum-qt wallet will show lock status with the padlock icon and the Console returns “null”. qtum-cli returns no status but you can check the unlock status with getwalletinfo for “unlocked_until”: <UNIX timestamp>
+
+The qtum-qt wallet will show lock status with the padlock icon and the Console returns “null”. qtum-cli returns no status but you can check the unlock status with `getwalletinfo` for “unlocked_until”: <UNIX timestamp>
 
 ### walletpassphrasechange "oldpassphrase" "newpassphrase"
 
-Changes the wallet passphrase from "oldpassphrase" to "newpassphrase"
-Qtum-qt returns “null”, qtumd returns nothing.
+Changes the wallet passphrase from "oldpassphrase" to "newpassphrase", qtum-qt returns “null”, qtumd returns nothing.
 
 ```
 walletpassphrasechange "you should always use a long and strong passphrase" "please use a strong and long passphrase"
 
 null
 ```
-
-
-
-
-
