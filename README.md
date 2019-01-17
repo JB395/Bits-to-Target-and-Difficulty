@@ -15,19 +15,16 @@ The Qtum Core wallet has a rich set of commands which give comprehensive control
 This manual focuses on the console commands which are given to a wallet that is running and can be sent using RPC (Remote Procedure Calls) or on the command line to the qtumd server wallet or given to the qtum-qt desktop GUI (Graphical User Interface) wallet using the Debug window Console command line (see Figure 1).
 
 ![2019-1 Mac Debug Window with Prompt](https://i.imgur.com/K0uCLVr.jpg)
-
 Figure 1. The qtum-qt Console
 
 For the server wallet qtumd, console commands are given using the Command Line Interface application qtum-cli on the system command line prompt (see Figure 2).
 
 ![2019-2 Command Line Win](https://i.imgur.com/m1xp3ng.jpg)
-
 Figure 2. System command line prompt
 
 You can always get a list of the current console commands using the help command (see Figure 3.)
 
 ![2019-3 Help Command Mac](https://i.imgur.com/w8yGO2G.jpg)
-
 Figure 3. The help command
 
 ## Console Commands :hammer_and_wrench:
