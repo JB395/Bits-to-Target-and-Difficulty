@@ -61,10 +61,12 @@ Startup commands give additional control and recovery options when launching the
 See the startup commands on the qtum-qt wallet with Help – Command line options:
 
 ![2019-4 Startup Commands Win](https://i.imgur.com/CryGF13.jpg)
+Figure 4. Startup commands - Windows
 
 and on the command line itself with “qtumd -?”:
 
 ![2019-5 Startup Commands Command Line Win](https://i.imgur.com/KCmxFaC.jpg)
+Figure 5. Startup commands from the command line
 
 
 ## Console Commands A - Z
@@ -125,6 +127,7 @@ addnode 35.192.54.161:3888 add
 Qtum-qt returns “null” after each:
 
 ![2019-6 addnode Mac](https://i.imgur.com/RjRkiP8.jpg)
+Figure 6. Entering the addnode command
 
 ### addwitnessaddress "address" ( p2sh )
 
@@ -783,6 +786,7 @@ getblockchaininfo
 ```
 
 ![2019-7 getblockchaininfo](https://i.imgur.com/4JAvAaG.jpg)
+Figure 7. The `getblockchaininfo` command
 
 ### getblockcount
 
