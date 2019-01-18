@@ -19,6 +19,7 @@ Figure 1. The qtum-qt Console
 
 Note the warning message in red in Figure 1 and be careful using the private key commands (`dumpprivkey` and `dumpwallet`) with Mainnet wallets.
 
+
 For the server wallet qtumd, console commands are given using the Command Line Interface application qtum-cli on the system command line prompt (see Figure 2).
 
 ![2019-2 Command Line Win](https://i.imgur.com/m1xp3ng.jpg)
@@ -33,18 +34,18 @@ Figure 3. The help command
 
 Console commands are given to a running Qtum Core wallet and provide additional information and control. Console commands and are required to operate the qtumd server wallet, which is a “headless” wallet with no graphical user interface.
 
-There are 136 console commands with some good references for the 112 inherited from bitcoin. In the total there are 13 “hidden” commands that are used by developers and won’t show up in the “help” list.
+There are 136 console commands with some good references for the 112 inherited from bitcoin. There are 13 “hidden” commands that are used by developers and won’t show up in the “help” list.
 
 Commands can have required or optional parameters and more numerous parameters are entered in JSON (JavaScript Object Notation) format with escaped double quotes ( \” ) as shown below.
 
-Common parameters for these commands are Qtum addresses, block hashes, contract addresses, etc. Some of the commands will have an optional parameter “minconf” (minimum confirmations) which allows you to get a response only for a transaction or block that have at least that number of confirmations.
-
-A quick comment on “accounts”. Accounts was an ill-fated way from bitcoin to track balances for what are really UTXO transaction-based values, and “accounts” are deprecated and will be phased out by version 0.17.
+Common parameters for these commands are Qtum addresses, block hashes, contract addresses, etc. Some of the commands will have an optional parameter “minconf” (minimum confirmations) which allows you to get a response for a transaction or block that has at least that number of confirmations.
 
 The chain query bitcoin API reference http://chainquery.com/bitcoin-api explains the parameters and gives examples with responses for the commands inherited from bitcoin. The bitcoin chain query API reverence gives 67 commands, of which 2 are not in Qtum (`estimatepriority`, `getgenerate`) and two (`gettransaction`, `walletpassphrase`) have an additional parameter for Qtum. See also https://bitcoin.org/en/developer-reference#remote-procedure-calls-rpcs.
 
 
 Advanced interfaces to the Qtum Core wallet (full node) can use these “console commands” as RPCs (Remote Procedure Calls) over a dedicated port connection to the node. To build an exchange hot wallet or server node for a mobile DAPP (Distributed Application) you can use RPCs, which follow these same console commands. The client node offers a JSON-RPC interface over HTTP sockets to perform various operational functions and to manage the local node.
+
+A quick comment on “accounts”. Accounts was an ill-fated way from bitcoin to track balances for what are really UTXO transaction-based values, and “accounts” are deprecated and will be phased out by version 0.18.
 
 Here are some command groupings that are useful for various tasks:
 
@@ -56,12 +57,12 @@ Here are some command groupings that are useful for various tasks:
 
 ## Startup Commands
 
-Startup commands give additional control and recovery options when launching the wallet. For example, you can use startup commands for the wallet for various kinds of blockchain recovery techniques, additional debug logging or additional controls. If you are going to use these startup commands, make sure you have a good backup of the wallet.dat file.
+Startup commands give additional control and recovery options when launching the wallet. For example, you can use startup commands for various kinds of blockchain recovery techniques, additional debug logging or additional controls. If you are going to use these startup commands, make sure you have a good backup of the wallet.dat file.
 
 See the startup commands on the qtum-qt wallet with Help – Command line options:
 
 ![2019-4 Startup Commands Win](https://i.imgur.com/CryGF13.jpg)
-Figure 4. Startup commands - Windows
+Figure 4. Startup commands
 
 and on the command line itself with “qtumd -?”:
 
@@ -89,6 +90,7 @@ Transaction not eligible for abandonment (code -5)
 
 Stops a wallet rescan triggered by a command such as `importprivkey`. This command can be issued by opening a 2nd command line window (where the first window is scanning), in which case the command will stop the scan and return “true”.
 
+
 ```
 qtum-cli abortrescan
 
@@ -100,7 +102,7 @@ true
 Add a multisignature address to the wallet so you can receive and send from that address. Run the command on each machine that will be signing and backup the wallet.dat file. The address can be a Qtum address or hex-encoded public key. Use `importaddress` to add the multisig address on each signing wallet.
 
 This functionality is only intended for use with non-watchonly addresses. See `importaddress` for watchonly p2sh address support. Use of account is DEPRECATED). See also `validateaddress`.
-
+   
 
 ```
 addmultisigaddress 2 "[\"QgdaD9b3ppKowoC45EZMtepjjBfnvEe6m\",\"QFmr8vY29reHj73XSHfdWvkV3mD57Kqd8\"]"
@@ -122,19 +124,19 @@ addnode 35.226.31.206:3888 add
 addnode 35.200.130.53:3888 add
 addnode 35.192.54.161:3888 add
 ```
+     
 
-
-Qtum-qt returns “null” after each:
+Qtum-qt returns “null” after each (see Figure 6).
 
 ![2019-6 addnode Mac](https://i.imgur.com/RjRkiP8.jpg)
 Figure 6. Entering the addnode command
 
 ### addwitnessaddress "address" ( p2sh )
 
-Hidden command. DEPRECATED. This command was a way to generate a SegWit address from an existing legacy address, usually a P2SH-P2WPKH addresses - Pay-to-Witness-Public-Key-Hash (P2WPKH) script embedded in a Pay-to-Script-Hash (P2SH) address. This command is mostly disabled in version 0.16 and will be removed in version 0.17. Instead, use the `getnewaddress` command with address type p2sh-segwit or bech32.
+Hidden command. DEPRECATED. This command was a way to generate a SegWit address from an existing legacy address, usually a P2SH-P2WPKH addresses - Pay-to-Witness-Public-Key-Hash (P2WPKH) script embedded in a Pay-to-Script-Hash (P2SH) address. This command is mostly disabled in version 0.16 and will be removed in version 0.17. Instead, use the `getnewaddress` command with address type "p2sh-segwit" or "bech32".
 
 Launch v 0.16 qtumd with `-deprecatedrpc=addwitnessaddress` to run the command:
-
+     
 
 ```
 addwitnessaddress QkSc3wcAJ59Nk4X9mvd258ycVxJ7XWhp9
@@ -170,7 +172,7 @@ bumpfee "cae25062777fca1bce7f860dd238af2be4495f4aef1b5a15bbee260b4c3cde2"
 
 ### callcontract "address" "data" ( address )
 
-TO COME.
+TO COME. XXXXX
 
 Argument:
 1. "address"          (string, required) The account address
@@ -220,7 +222,7 @@ DEPRECATED. Use `addmultisigaddress`.
 ### createrawtransaction [{"txid":"id","vout":n},...] {"address":amount,"data":"hex",...} ( locktime ) ( replaceable )
 
 Create a hex-encoded raw transaction sending some inputs to outputs. The transaction must then be signed and sent to the network, see `signrawtransaction` and `sendrawtransaction`. Returns a hex-encoded raw transaction. If you are sending coins make sure to create a change address so the change can be returned; any difference between the input values and output values will be taken as the transaction fee. If you don’t work out the math you could pay a big transaction fee.
-
+     
 
 ```
 createrawtransaction "[{\"txid\":\"17b3f9ef530695ef2e0368e445a3b59bf12811bdfd42325bb14248e72deb7e2\",\"vout\":0}]" "{\"Qd5eHho389mJMCxSzAbe31w2vntTc7192\":1.0, \"QdXtq55Bf443Lkme2hdj4mD8KKepk32f6\":0.99}"
@@ -231,7 +233,7 @@ createrawtransaction "[{\"txid\":\"17b3f9ef530695ef2e0368e445a3b59bf12811bdfd423
 ### decoderawtransaction "hexstring" ( iswitness )
 
 Gives the decoded data from a raw hex-encoded transaction. Here we decode the results from `createrawtransaction` above.
-
+     
 
 ```
 decoderawtransaction 0200000<snip>f33ad0000000
@@ -930,7 +932,7 @@ getchaintips
 
 Compute statistics about the total number and rate of transactions in the chain, where the default “window” is the last one month.
 
-* “time” gives the UNIX timestamp for the last block in the window
+* “time” gives the Unix timestamp for the last block in the window
 * “txcount” gives the total transactions from the launch of the blockchain
 * “window_block_count” gives the number of blocks in the window (675 TX/day * 30 days)
 * “window_interval” gives the window length in seconds
@@ -2787,7 +2789,7 @@ walletpassphrase "you should always use a long and strong passphrase" 99999999 t
 ```
 
 
-The qtum-qt wallet will show lock status with the padlock icon and the Console returns “null”. qtum-cli returns no status but you can check the unlock status with `getwalletinfo` for “unlocked_until”: <UNIX timestamp>
+The qtum-qt wallet will show lock status with the padlock icon and the Console returns “null”. qtum-cli returns no status but you can check the unlock status with `getwalletinfo` for “unlocked_until”: <Unix timestamp>
 
 ### walletpassphrasechange "oldpassphrase" "newpassphrase"
 
