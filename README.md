@@ -2577,9 +2577,8 @@ stop
 
 ### submitblock "hexdata"  ( "dummy" )
 
-Attempts to submit new block to network. See https://en.bitcoin.it/wiki/BIP_0022 for full specification. Use `getblocktemplate` to construct a block and convert to hex using XXXXX
-
-XXXXX
+Attempts to submit new block to network. See https://en.bitcoin.it/wiki/BIP_0022 for full specification. Use `getblocktemplate` to construct a block along with the block header and transactions. 
+     
 
 Arguments
 1. "hexdata"        (string, required) the hex-encoded block data to submit
