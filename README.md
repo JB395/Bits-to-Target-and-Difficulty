@@ -5,7 +5,7 @@ This is a tab delimited text file giving the Excel formulae for converting Diffi
 in compact notation to the Target and Difficulty.
 
 
-# Commands 1-16-2019
+# Commands
 
 The Qtum Core wallet has a rich set of commands which give comprehensive control of the wallet and blockchain transactions. There are two sets of commands that may be used with Qtum Core wallets:
 
@@ -172,13 +172,14 @@ bumpfee "cae25062777fca1bce7f860dd238af2be4495f4aef1b5a15bbee260b4c3cde2"
 
 ### callcontract "address" "data" ( address )
 
-TO COME. XXXXX
-
-Argument:
+Arguments:
 1. "address"          (string, required) The account address
 2. "data"             (string, required) The data hex string
 3. address              (string, optional) The sender address hex string
 4. gasLimit             (string, optional) The gas limit for executing the contract
+
+TO COME
+     
 
 ### clearbanned
 
@@ -1791,7 +1792,7 @@ null
 
 Imports funds without rescan. Corresponding address or script must previously be included in wallet. Aimed towards pruned wallets. The end-user is responsible to import additional transactions that subsequently spend the imported outputs or rescan after the point in the blockchain the transaction is included.
 
-Example TO COME. XXXXX
+Example TO COME.
 
 ### importpubkey "pubkey" ( "label" rescan )
 
